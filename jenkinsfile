@@ -5,10 +5,13 @@ pipeline {
         }
     }
 
+environment {
+    PATH = "/opt/apache-maven-3.9.9/bin $PATH"
+}
     stages {
-        stage('Clone-code') {
+        stage("build") {
             steps {
-                git branch: 'main', credentialsId: 'maven-server-cred', url: 'https://github.com/HamzaMerdassi55/Spring-app.git'
+                sh 'mvn clean deploy'
             }
         }
     }
